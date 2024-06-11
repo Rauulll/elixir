@@ -1,0 +1,6 @@
+deps
+doc
+_build
+*.beam
+*.dump
+test/my_deck.beam
