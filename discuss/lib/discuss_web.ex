@@ -44,6 +44,7 @@ defmodule DiscussWeb do
 
       import Plug.Conn
       import DiscussWeb.Gettext
+      use Phoenix.Component
 
       unquote(verified_routes())
     end
@@ -71,6 +72,8 @@ defmodule DiscussWeb do
       use Phoenix.Component
 
       # Import convenience functions from controllers
+      import Phoenix.HTML
+      import Phoenix.Router.Helpers
       import Phoenix.Controller,
         only: [get_csrf_token: 0, view_module: 1, view_template: 1]
 
