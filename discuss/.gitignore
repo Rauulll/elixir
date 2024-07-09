@@ -35,4 +35,5 @@ discuss-*.tar
 npm-debug.log
 /assets/node_modules/
 /lib/discuss_web/controllers/topic_html.ex
-
+/config/
+/.env/
