@@ -4,9 +4,9 @@ defmodule DiscussWeb.AuthController do
 
   def callback(conn, params) do
     IO.puts("+++++++")
-    IO.inspect(conn.assign)
-    IO.puts("+++++++")
     IO.inspect(params)
+    IO.puts("+++++++")
+    IO.inspect(conn.assigns)
     IO.puts("+++++++")
   end
 end
