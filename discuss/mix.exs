@@ -60,7 +60,8 @@ defmodule Discuss.MixProject do
       {:dns_cluster, "~> 0.1.1"},
       {:bandit, "~> 1.5"},
       {:liveview_playground, "~> 0.1.6"},
-      {:ueberauth_github, "~> 0.8"}
+      {:ueberauth_github, "~> 0.8"},
+      {:dotenv, "~> 3.0.0"}
     ]
   end
 

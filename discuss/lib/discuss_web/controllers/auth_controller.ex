@@ -7,5 +7,6 @@ defmodule DiscussWeb.AuthController do
     IO.inspect(conn.assign)
     IO.puts("+++++++")
     IO.inspect(params)
+    IO.puts("+++++++")
   end
 end
