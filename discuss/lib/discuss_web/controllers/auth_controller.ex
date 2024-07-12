@@ -32,7 +32,7 @@ defmodule DiscussWeb.AuthController do
   end
 
   defp update_or_insert_user(user_params) do
-    case UserModel.get_user(user_params.email) do
+    case UserModel.get_user_by_email(user_params.email) do
       nil ->
         UserModel.create_user(user_params)
       user ->
