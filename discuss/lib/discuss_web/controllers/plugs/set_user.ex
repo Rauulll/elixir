@@ -11,7 +11,7 @@ defmodule Discuss.Plugs.SetUser do
     user_id = get_session(conn, :user_id)
 
     cond do
-      user = user_id && UserModel.get_user!(user_id) ->
+      user = user_id && UserModel.get_user(user_id) ->
         assign(conn, :user, user)
       true ->
         assign(conn, :user, nil)

@@ -5,11 +5,11 @@ defmodule DiscussWeb.AuthController do
 
   plug Ueberauth
 
-  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
+  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, params) do
     user_params = %{
       name: auth.info.name,
       token: auth.credentials.token,
-      provider: "github",
+      provider: params["provider"] || "github",
       email: auth.info.email
     }
 

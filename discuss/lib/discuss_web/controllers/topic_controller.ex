@@ -5,9 +5,6 @@ defmodule DiscussWeb.TopicController do
   alias Discuss.Model.Topic
 
   def index(conn, _params) do
-    IO.puts("++++++")
-    IO.inspect(conn.assigns)
-    IO.puts("++++++")
     topics = Model.list_topics()
     render(conn, :index, topics: topics)
   end
