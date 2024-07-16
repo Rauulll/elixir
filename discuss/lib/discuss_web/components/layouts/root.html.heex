@@ -18,12 +18,10 @@
         <a href="/" class="brand-logo">Discussions</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <%= if @conn.assigns[:user] do %>
-            Logout
-          <%= else %>
-            <.link href={~p"/auth/#{@conn.assigns.params[:provider] || "github"}"}>
-              <.button class="bg-white hover:bg-slate-400">Sign in with GitHub </.button>
-            </.link>
-          <%= end %>          
+          <a class="waves-effect waves-light btn-small" href={~p"/auth/signout"}>Sign out</a>
+          <% else %>
+            <a class="waves-effect waves-light btn-small" href={~p"/auth/#{@conn.params[:provider] || "github"}"}>Sign in with Github</a>
+          <% end %>          
         </ul>
       </div>
       <div>
