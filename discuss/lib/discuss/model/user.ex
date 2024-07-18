@@ -8,11 +8,13 @@ defmodule Discuss.Model.User do
     field :provider, :string
     field :email, :string
 
+    has_many :topics, Discuss.Model.Topic
+
     timestamps(type: :utc_datetime)
   end
 
   @doc false
-  def changeset(user, attrs) do
+  def changeset(user, attrs \\ %{}) do
     user
     |> cast(attrs, [:name, :email, :provider, :token])
     |> validate_required([:name, :email, :provider, :token])
