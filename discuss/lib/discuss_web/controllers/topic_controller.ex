@@ -4,10 +4,9 @@ defmodule DiscussWeb.TopicController do
   alias Discuss.Model
   alias Discuss.Model.Topic
 
+  plug DiscussWeb.Plugs.RequireAuth when action in [:new, :create, :edit, :edit, :update, :delete]
+
   def index(conn, _params) do
-    IO.puts("++++++")
-    IO.inspect(conn.assigns)
-    IO.puts("++++++")
     topics = Model.list_topics()
     render(conn, :index, topics: topics)
   end
@@ -18,7 +17,12 @@ defmodule DiscussWeb.TopicController do
   end
 
   def create(conn, %{"topic" => topic_params}) do
-    case Model.create_topic(topic_params) do
+    result =
+      conn.assigns[:user]
+      |> Ecto.build_assoc(:topics)
+      |> Model.create_topic(topic_params)
+
+    case result do
       {:ok, topic} ->
         conn
         |> put_flash(:info, "Topic created successfully.")

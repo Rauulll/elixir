@@ -6,13 +6,15 @@ defmodule Discuss.Model.Topic do
     field :description, :string
     field :title, :string
 
+    belongs_to :user, Discuss.Model.User
+
     timestamps(type: :utc_datetime)
   end
 
   @doc false
-  def changeset(topic, attrs) do
+  def changeset(topic, attrs \\ %{}) do
     topic
-    |> cast(attrs, [:title, :description])
-    |> validate_required([:title, :description])
+    |> cast(attrs, [:title, :description, :user_id])
+    |> validate_required([:title, :description, :user_id])
   end
 end

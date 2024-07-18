@@ -55,6 +55,6 @@ defmodule Discuss.UserModel do
       ** (Ecto.NoResultsError)
 
   """
-  def get_user!(id), do: Repo.get!(User, id)
+  def get_user(id), do: Repo.get(User, id)
 
 end

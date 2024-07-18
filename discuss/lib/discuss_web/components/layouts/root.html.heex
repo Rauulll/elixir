@@ -17,6 +17,11 @@
       <div class="nav-wrapper container">
         <a href="/" class="brand-logo">Discussions</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <%= if @conn.assigns[:user] do %>
+          <a class="waves-effect waves-light btn-small" href={~p"/auth/signout"}>Sign out</a>
+          <% else %>
+            <a class="waves-effect waves-light btn-small" href={~p"/auth/#{@conn.params[:provider] || "github"}"}>Sign in with Github</a>
+          <% end %>          
         </ul>
       </div>
       <div>
