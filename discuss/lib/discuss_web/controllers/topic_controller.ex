@@ -5,6 +5,7 @@ defmodule DiscussWeb.TopicController do
   alias Discuss.Model.Topic
 
   plug DiscussWeb.Plugs.RequireAuth when action in [:new, :create, :edit, :edit, :update, :delete]
+  plug :check_topic_owner when action in [:edit, :delete, :update]
 
   def index(conn, _params) do
     topics = Model.list_topics()
@@ -65,5 +66,21 @@ defmodule DiscussWeb.TopicController do
     conn
     |> put_flash(:info, "Topic deleted successfully.")
     |> redirect(to: ~p"/topics")
+  end
+
+  def check_topic_owner(conn, _params) do
+    %{params: %{"id" => topic_id}} = conn
+    topic = Model.get_topic!(topic_id)
+
+    IO.inspect(topic)
+
+    if topic.user_id == conn.assigns.user.id do
+      conn
+    else
+      conn
+      |> put_flash(:error, "You cannot perform that Action")
+      |> redirect(to: ~p"/topics")
+      |> halt()
+    end
   end
 end
