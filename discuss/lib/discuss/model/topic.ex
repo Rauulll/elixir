@@ -7,6 +7,7 @@ defmodule Discuss.Model.Topic do
     field :title, :string
 
     belongs_to :user, Discuss.Model.User
+    has_many :comments, Discuss.Model.Comments
 
     timestamps(type: :utc_datetime)
   end

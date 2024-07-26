@@ -9,6 +9,7 @@ defmodule Discuss.Model.User do
     field :email, :string
 
     has_many :topics, Discuss.Model.Topic
+    has_many :comments, Discuss.Model.Comments
 
     timestamps(type: :utc_datetime)
   end
