@@ -1,6 +1,11 @@
+<script>
+  document.addEventListener("DOMContentLoaded", (event) =>{
+    window.createSocket("<%= @topic.id %>")
+  }) 
+</script>
 <.header>
   <%= @topic.title %>
-  <:subtitle>This is a topic record from your database.</:subtitle>
+  <:subtitle><%= @topic.description %></:subtitle>
   <:actions>
     <.link href={~p"/topics/#{@topic}/edit"}>
       <.button>Edit topic</.button>
@@ -8,9 +13,13 @@
   </:actions>
 </.header>
 
-<.list>
+<div id="post">
+  <.button> Post! </.button>
+</div>
+
+<!-- <.list>
   <:item title="Title"><%= @topic.title %></:item>
   <:item title="Description"><%= @topic.description %></:item>
-</.list>
+</.list> -->
 
 <.back navigate={~p"/topics"}>Back to topics</.back>
