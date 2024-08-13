@@ -9,21 +9,23 @@ defmodule DiscussWeb.CommentsChannel do
       Model.get_topic!(topic_id)
       |> Repo.preload(:comments)
 
-    IO.puts("+++++++")
-    IO.inspect(topic)
-    IO.puts("+++++++")
-
     {:ok, %{comments: topic.comments}, assign(socket, :topic, topic)}
   end
 
   def handle_in(_name, %{"content" => comment}, socket) do
+    topic = socket.assigns.topic
     result =
-      socket.assigns.topic
+      topic
       |> Ecto.build_assoc(:comments)
       |> CommentsModel.create_comment(%{comments: comment})
 
     case result do
-      {:ok, _comment} ->
+      {:ok, comment} ->
+        broadcast!(
+          socket,
+          "comments:#{topic.id}:new",
+          %{comment: comment}
+        )
         {:reply, :ok, socket}
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, {%{changeset: changeset}}, socket}
