@@ -2,6 +2,8 @@ defmodule Discuss.Model.Comments do
   use Ecto.Schema
   import Ecto.Changeset
 
+  @derive {Jason.Encoder, only: [:comments, :user]}
+
   schema "comments" do
     field :comments, :string
 
@@ -9,8 +11,8 @@ defmodule Discuss.Model.Comments do
     belongs_to (:user), Discuss.Model.User
   end
 
-  def changeset(struct, attr \\ %{}) do
-    struct
+  def changeset(comment, attr \\ %{}) do
+    comment
     |> cast(attr, [:comments, :user_id, :topic_id])
     |> validate_required([:comments])
   end

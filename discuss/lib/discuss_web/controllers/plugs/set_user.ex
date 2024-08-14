@@ -1,6 +1,5 @@
 defmodule Discuss.Plugs.SetUser do
   import Plug.Conn
-  # import Phoenix.Controller
 
   alias Discuss.UserModel
 
@@ -12,9 +11,16 @@ defmodule Discuss.Plugs.SetUser do
 
     cond do
       user = user_id && UserModel.get_user(user_id) ->
-        assign(conn, :user, user)
+        conn
+        |> put_user_token(user)
+        |> assign(:user, user)
       true ->
         assign(conn, :user, nil)
     end
+  end
+
+  defp put_user_token(conn, user) do
+    user_id = Phoenix.Token.sign(conn, "key", user.id)
+    assign(conn, :user_token, user_id)
   end
 end

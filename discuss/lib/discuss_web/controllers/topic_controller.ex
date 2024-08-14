@@ -72,8 +72,6 @@ defmodule DiscussWeb.TopicController do
     %{params: %{"id" => topic_id}} = conn
     topic = Model.get_topic!(topic_id)
 
-    IO.inspect(topic)
-
     if topic.user_id == conn.assigns.user.id do
       conn
     else
