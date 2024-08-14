@@ -7,7 +7,7 @@ socket.connect()
 const createSocket = (topicId) => {
   let channel = socket.channel(`comments:${topicId}`, {})
   channel.join()
-  .receive("ok", resp => { 
+  .receive("ok", resp => {
     renderComments(resp.comments) 
   })
   .receive("error", resp => { console.log("Unable to join", resp) })
