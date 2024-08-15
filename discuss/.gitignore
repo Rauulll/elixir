@@ -36,3 +36,6 @@ npm-debug.log
 
 #Ignore .env
 /.env/
+
+#ignore config
+/config/

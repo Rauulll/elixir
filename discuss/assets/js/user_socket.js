@@ -35,10 +35,24 @@ function renderComment(payload) {
 }
 
 function commentTemplate(comments) {
+  let name = "Anonymous"
+
+  if (comments.user) {
+    name = comments.user.name
+  }
+
   return `
-    <li class="collection-item">
-      ${comments.comments}
-    </li>
+    <div class="mt-4">
+    <ol class="collection-item flex flex-row justify-between border-b border-gray-200">
+        <div class="text-gray-800">
+          ${comments.comments}
+        </div>
+        <div class="mt-2 text-sm text-gray-500">
+          ${name}
+        </div>
+      </ol>
+    </div>
+      
   `
 }
 

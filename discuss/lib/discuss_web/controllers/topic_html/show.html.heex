@@ -6,11 +6,6 @@
 <.header>
   <%= @topic.title %>
   <:subtitle><%= @topic.description %></:subtitle>
-  <:actions>
-    <.link href={~p"/topics/#{@topic}/edit"}>
-      <.button>Edit topic</.button>
-    </.link>
-  </:actions>
 </.header>
 <input id="comment" label="comment">
 <div id="post" class="text-right">
