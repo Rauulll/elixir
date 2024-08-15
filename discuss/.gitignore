@@ -35,7 +35,7 @@ discuss-*.tar
 npm-debug.log
 
 #Ignore .env
-/.env/
+/.env
 
 #ignore config
 /config/
